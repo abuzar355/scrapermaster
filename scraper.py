@@ -19,6 +19,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import chromedriver_autoinstaller
 
 from openai import OpenAI
 
@@ -27,20 +28,22 @@ load_dotenv()
 # Set up the Chrome WebDriver options
 
 def setup_selenium():
-    options = Options()
+    # Automatically install the correct version of ChromeDriver
+    chromedriver_autoinstaller.install()
 
-    # adding arguments
-    options.add_argument("--disable-gpu")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--window-size=1920,1080")
+    # Set up Chrome options
+    options = Options()
+    options.add_argument("--headless")  # Run Chrome in headless mode (required for cloud environments)
+    options.add_argument("--disable-gpu")  # Disable GPU (cloud environments often don’t have GPU)
+    options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+    options.add_argument("--no-sandbox")  # Bypass OS security model (required for some environments)
+    options.add_argument("--window-size=1920,1080")  # Set window size for headless mode
     
     # Randomize user-agent to mimic different users
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-    # Specify the path to the ChromeDriver
-    service = Service(r"./chromedriver-win64/chromedriver.exe")  
-
+    
     # Initialize the WebDriver
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(options=options)
     return driver
 
 def fetch_html_selenium(url):
