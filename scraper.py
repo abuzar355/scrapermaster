@@ -162,13 +162,12 @@ def trim_to_token_limit(text, model, max_tokens=200000):
     return text
 
 def format_data(data, DynamicListingsContainer):
-
-        # Splitting the key into substrings
+        
     key_part1 = 'sk'
     key_part2 = '-proj'
-    key_part3 = '-zBKStv_wrdBFHUx4m4XXqBPUg1h8bnaJJw8jJIDwfHazxc8usTc2AOqp0A'
-    key_part4 = 'T3BlbkFJaLXQ09DNIJPIw1LOB4xcHEuvC5W8'
-    key_part5 = 'gQnau4IlFP3zPOydD3pFapbfAxzmAA'
+    key_part3 = '-2fH0WLrBvNRD7ag_Fj_mgCl5'
+    key_part4 = 'cMojsQxgGcBFAim_0H6RhaLsGGtngsIsTWM7wxpON-uCb'
+    key_part5 = 'kzMcdT3BlbkFJT4rIOY7IFor7ny_rlxjU72zzXIJ7yNzQ8xYJDgqX14FwetocemuZY1MMegRfczc5Y0l88Ddw4A'
 
     full_key = key_part1 + key_part2 + key_part3 + key_part4 + key_part5
 
