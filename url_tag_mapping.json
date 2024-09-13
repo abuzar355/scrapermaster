@@ -1,0 +1,19 @@
+{
+    "Westherr": {
+      "url": "https://specials.westherr.com/specials/?dealer_id=11&",
+      "tags": ["Car title", "Lease Payment per Month", "Lease Term", "Deal Payment", "MSRP", "Condition", "Lease or Buy", "Drive Type", "image", "Expiration Date","Deal Terms Analysis 1","Deal Terms Analysis 2","Deal Terms Analysis 3","Deal Terms Analysis 4","Deal Terms Analysis 5","Deal Terms Analysis 6","Deal Terms Analysis 7","Deal Terms Analysis 8","Deal Terms Analysis 9","Deal Terms Analysis 10"]
+    },
+    "Northtown": {
+      "url": "https://www.northtowncjd.com/promotions/new/index.htm",
+      "tags": ["Year", "Car Make", "Trim", "Sales Price", "image","Details","Disclaimer Breakdown 1","Disclaimer Breakdown 2","Disclaimer Breakdown 3","Disclaimer Breakdown 4","Disclaimer Breakdown 5","Disclaimer Breakdown 6","Disclaimer Breakdown 7","Disclaimer Breakdown 8","Disclaimer Breakdown 9","Disclaimer Breakdown 10"]
+    },
+    "Cecconi": {
+      "url": "https://www.joececconischryslercomplex.com/Monthly-Deals.htm",
+      "tags": ["Car Name", "MSRP", "Stock No","Monthly Payment" ,"Lease Months", "Miles/Year","Down Payment","APR","Deal End Data","Valid Through","Details","Disclaimer Breakdown 1","Disclaimer Breakdown 2","Disclaimer Breakdown 3","Disclaimer Breakdown 4","Disclaimer Breakdown 5","Disclaimer Breakdown 6","Disclaimer Breakdown 7","Disclaimer Breakdown 8","Disclaimer Breakdown 9","Disclaimer Breakdown 10"]
+    },
+    "Towne": {
+      "url": "https://www.townecdjr.com/new-vehicle-specials/",
+      "tags": ["Car Name", "MSRP", "Stock No","Monthly Payment" ,"Lease Months", "Miles/Year","Down Payment","APR","Deal End Data","Valid Through","Details","Disclaimer Breakdown 1","Disclaimer Breakdown 2","Disclaimer Breakdown 3","Disclaimer Breakdown 4","Disclaimer Breakdown 5","Disclaimer Breakdown 6","Disclaimer Breakdown 7","Disclaimer Breakdown 8","Disclaimer Breakdown 9","Disclaimer Breakdown 10"]
+    }
+  }
+  
