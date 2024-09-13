@@ -31,15 +31,17 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=venv
 
-        # Install Heroku CLI
-    - name: Install Heroku CLI
+    # Authenticate Heroku CLI using API key
+    - name: Authenticate Heroku CLI
       run: |
-        curl https://cli-assets.heroku.com/install.sh | sh
+        echo $HEROKU_API_KEY | heroku auth:token
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
     # Deploy to Heroku
     - name: Deploy to Heroku
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  # Store this as a GitHub secret
       run: |
-        git remote add heroku https://git.heroku.com/scrapemaster.git
+        heroku git:remote -a scrapemaster
         git push heroku master
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
