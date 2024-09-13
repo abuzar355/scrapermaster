@@ -13,3 +13,5 @@ streamlit-tags
 openpyxl
 flake8
 pytest
+chromedriver-autoinstaller
+selenium
