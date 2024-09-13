@@ -6,6 +6,9 @@ from datetime import datetime
 from typing import List, Dict, Type
 from selenium.common.exceptions import StaleElementReferenceException
 import subprocess
+import requests
+import zipfile
+from io import BytesIO
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -27,11 +30,21 @@ from openai import OpenAI
 load_dotenv()
 
 def install_chrome():
-    """Install Google Chrome in the environment if it's not already installed."""
-    # Use wget to download and install Chrome
-    subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], check=True)
-    subprocess.run(["sudo", "apt", "install", "-y", "./google-chrome-stable_current_amd64.deb"], check=True)
+    """Download and install Google Chrome in the environment."""
+    chrome_url = "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+    chrome_deb_path = "/tmp/google-chrome-stable_current_amd64.deb"
+    
+    # Download Chrome
+    response = requests.get(chrome_url)
+    if response.status_code == 200:
+        # Save the file to a temporary location
+        with open(chrome_deb_path, 'wb') as file:
+            file.write(response.content)
 
+        # Install Chrome using dpkg
+        subprocess.run(["sudo", "apt", "install", "-y", chrome_deb_path], check=True)
+    else:
+        raise Exception("Failed to download Google Chrome.")
 def setup_selenium():
     try:
         # Try to get the Chrome version (this checks if Chrome is installed)
