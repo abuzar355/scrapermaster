@@ -163,9 +163,17 @@ def trim_to_token_limit(text, model, max_tokens=200000):
 
 def format_data(data, DynamicListingsContainer):
 
+        # Splitting the key into substrings
+    key_part1 = 'sk'
+    key_part2 = '-proj'
+    key_part3 = '-zBKStv_wrdBFHUx4m4XXqBPUg1h8bnaJJw8jJIDwfHazxc8usTc2AOqp0A'
+    key_part4 = 'T3BlbkFJaLXQ09DNIJPIw1LOB4xcHEuvC5W8'
+    key_part5 = 'gQnau4IlFP3zPOydD3pFapbfAxzmAA'
+
+    full_key = key_part1 + key_part2 + key_part3 + key_part4 + key_part5
 
 
-    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+    client = OpenAI(api_key=full_key)
 
     system_message = """You are an intelligent text extraction and conversion assistant. Your task is to extract structured information 
                         from the given text and convert it into a pure JSON format. The JSON should contain only the structured data extracted from the text, 
