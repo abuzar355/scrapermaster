@@ -12,3 +12,4 @@ streamlit
 streamlit-tags
 openpyxl
 flake8
+pytest
