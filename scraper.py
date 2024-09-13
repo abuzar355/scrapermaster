@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 from typing import List, Dict, Type
 from selenium.common.exceptions import StaleElementReferenceException
+import subprocess
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -25,25 +26,34 @@ from openai import OpenAI
 
 load_dotenv()
 
-# Set up the Chrome WebDriver options
+def install_chrome():
+    """Install Google Chrome in the environment if it's not already installed."""
+    # Use wget to download and install Chrome
+    subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], check=True)
+    subprocess.run(["sudo", "apt", "install", "-y", "./google-chrome-stable_current_amd64.deb"], check=True)
 
 def setup_selenium():
+    try:
+        # Try to get the Chrome version (this checks if Chrome is installed)
+        subprocess.run(["google-chrome", "--version"], check=True)
+    except FileNotFoundError:
+        # If Chrome is not found, install it
+        install_chrome()
+
     # Automatically install the correct version of ChromeDriver
     chromedriver_autoinstaller.install()
 
-    # Set up Chrome options
+    # Set up Chrome options for headless mode
     options = Options()
-    options.add_argument("--headless")  # Run Chrome in headless mode (required for cloud environments)
-    options.add_argument("--disable-gpu")  # Disable GPU (cloud environments often don’t have GPU)
+    options.add_argument("--headless")  # Ensure Chrome runs in headless mode
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-    options.add_argument("--no-sandbox")  # Bypass OS security model (required for some environments)
-    options.add_argument("--window-size=1920,1080")  # Set window size for headless mode
-    
-    # Randomize user-agent to mimic different users
-    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-    
+    options.add_argument("--window-size=1920,1080")
+
     # Initialize the WebDriver
     driver = webdriver.Chrome(options=options)
+    
     return driver
 
 def fetch_html_selenium(url):
