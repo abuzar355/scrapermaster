@@ -40,5 +40,5 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  # Store this as a GitHub secret
       run: |
-        git remote add heroku https://git.heroku.com/your-heroku-app-name.git
+        git remote add heroku https://git.heroku.com/scrapemaster.git
         git push heroku master
